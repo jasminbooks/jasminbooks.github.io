@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jasmin Secic - Dvojezične Knjige za Djecu | Kroatisch-Deutsche Kinderbücher | Bilingual Children's Books</title>
+    <meta name="description" content="Jasmin Secic - Autor dvojezičnih knjiga za djecu na hrvatskom, njemačkom i engleskom. Kišni zmaj trilogija, Nikola Tesla, Lunavela.">
+    <meta name="keywords" content="dvojezične knjige, bilingual books, kroatisch deutsch kinderbücher, croatian english books, knjige za djecu, kinderbücher kroatisch, hrvatski njemacki, hrvatski engleski, Kišni zmaj, Rainy Dragon, Regendrache, Nikola Tesla, Lunavela">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #7c3aed;
+            --accent-color: #f59e0b;
+            --dark-bg: #0f172a;
+            --light-bg: #f8fafc;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--light-bg);
+        }
+
+        /* Language switching - only hide text spans */
+        .lang-hr, .lang-de, .lang-en { display: none; }
+        body.show-hr .lang-hr { display: inline; }
+        body.show-de .lang-de { display: inline; }
+        body.show-en .lang-en { display: inline; }
+        
+        .lang-hr-block, .lang-de-block, .lang-en-block { display: none; }
+        body.show-hr .lang-hr-block { display: block; }
+        body.show-de .lang-de-block { display: block; }
+        body.show-en .lang-en-block { display: block; }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo { font-size: 1.5rem; font-weight: bold; }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { background: rgba(255, 255, 255, 0.2); }
+
+        .lang-switcher {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem;
+            border-radius: 25px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            color: white;
+            border: 2px solid transparent;
+            padding: 0.4rem 0.8rem;
+            cursor: pointer;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .lang-btn:hover { background: rgba(255, 255, 255, 0.2); }
+        .lang-btn.active { background: white; color: var(--primary-color); }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .hero p { font-size: 1.3rem; margin-bottom: 2rem; }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: var(--transition);
+        }
+
+        .cta-button:hover { transform: translateY(-3px); }
+
+        .about {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .author-photo {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: var(--card-shadow);
+            border: 5px solid white;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .about-content p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .social-links a.instagram {
+            background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+        }
+
+        .social-links a.facebook {
+            background: linear-gradient(135deg, #4267B2, #5578c4);
+        }
+
+        .social-links a:hover { transform: translateY(-3px); }
+
+        .books-section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+        }
+
+        .category {
+            margin-bottom: 4rem;
+        }
+
+        .category-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+        }
+
+        .category-header h3 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+        .category-header p { opacity: 0.9; }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .book-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+
+        .book-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .book-image {
+            width: 100%;
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .book-content { padding: 1.5rem; }
+
+        .book-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            min-height: 60px;
+        }
+
+        .format-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .format-badge {
+            padding: 0.4rem 1rem;
+            background: var(--light-bg);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .amazon-button {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #FF9900, #FF6600);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: var(--transition);
+        }
+
+        .amazon-button:hover {
+            background: linear-gradient(135deg, #FF6600, #FF3300);
+        }
+
+        footer {
+            background: var(--dark-bg);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer p { opacity: 0.8; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .about { grid-template-columns: 1fr; text-align: center; }
+            .books-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body class="show-hr">
+    <header>
+        <nav>
+            <div class="logo">Jasmin Secic</div>
+            <div class="nav-links">
+                <a href="#about">
+                    <span class="lang-hr">O Autoru</span>
+                    <span class="lang-de">Über den Autor</span>
+                    <span class="lang-en">About</span>
+                </a>
+                <a href="#books">
+                    <span class="lang-hr">Knjige</span>
+                    <span class="lang-de">Bücher</span>
+                    <span class="lang-en">Books</span>
+                </a>
+                <a href="#contact">
+                    <span class="lang-hr">Kontakt</span>
+                    <span class="lang-de">Kontakt</span>
+                    <span class="lang-en">Contact</span>
+                </a>
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="hr">HR</button>
+                    <button class="lang-btn" data-lang="de">DE</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h1>
+                <span class="lang-hr">Dvojezične Knjige za Djecu</span>
+                <span class="lang-de">Zweisprachige Kinderbücher</span>
+                <span class="lang-en">Bilingual Children's Books</span>
+            </h1>
+            <p>
+                <span class="lang-hr">Otkrijte čarobne priče koje uče djecu o poštovanju drugih i prihvaćanju različitosti</span>
+                <span class="lang-de">Entdecken Sie zauberhafte Geschichten, die Kindern Respekt und Akzeptanz lehren</span>
+                <span class="lang-en">Discover magical stories that teach children respect and acceptance of diversity</span>
+            </p>
+            <a href="#books" class="cta-button">
+                <span class="lang-hr">Pogledajte Knjige</span>
+                <span class="lang-de">Bücher ansehen</span>
+                <span class="lang-en">View Books</span>
+            </a>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div style="text-align: center;">
+            <img src="Jasmin-Secic-Photo.jpg" alt="Jasmin Secic" class="author-photo">
+        </div>
+        <div class="about-content">
+            <h2>
+                <span class="lang-hr">O Autoru</span>
+                <span class="lang-de">Über den Autor</span>
+                <span class="lang-en">About the Author</span>
+            </h2>
+            <p class="lang-hr">Jasmin Secic je pisac i blogger. On je autor nekoliko knjiga i popularnih blogova. Također je autor nekoliko knjiga za djecu. Ove knjige imaju karakteristiku podučavanja djece o vrijednostima poštovanja drugih i onih koji su različiti od nas.</p>
+            <p class="lang-de">Jasmin Secic ist Schriftsteller und Blogger. Er ist Autor mehrerer Bücher und beliebter Blogs. Er ist auch Autor mehrerer Kinderbücher. Diese Bücher haben die Besonderheit, Kindern die Werte des Respekts vor anderen und jenen beizubringen, die anders sind als wir.</p>
+            <p class="lang-en">Jasmin Secic is a writer and blogger. He is the author of several books and popular blogs. He is also the author of several books for children. These books have the characteristic of teaching children about the values of respecting others and those who are different from us.</p>
+            
+            <div class="social-links" id="contact">
+                <a href="https://www.instagram.com/jasminsecic/" target="_blank" class="instagram">📷 Instagram</a>
+                <a href="https://www.facebook.com/KisniZmaj" target="_blank" class="facebook">👍 Facebook</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="books-section" id="books">
+        <div class="section-header">
+            <h2>
+                <span class="lang-hr">Moje Knjige</span>
+                <span class="lang-de">Meine Bücher</span>
+                <span class="lang-en">My Books</span>
+            </h2>
+        </div>
+
+        <!-- CROATIAN/GERMAN BOOKS -->
+        <div class="category">
+            <div class="category-header">
+                <h3>
+                    <span class="lang-hr">Dvojezične Knjige: Hrvatski / Njemački</span>
+                    <span class="lang-de">Zweisprachige Bücher: Kroatisch / Deutsch</span>
+                    <span class="lang-en">Bilingual Books: Croatian / German</span>
+                </h3>
+                <p>
+                    <span class="lang-hr">Savršene za djecu koja uče hrvatski i njemački jezik</span>
+                    <span class="lang-de">Perfekt für Kinder, die Kroatisch und Deutsch lernen</span>
+                    <span class="lang-en">Perfect for children learning Croatian and German</span>
+                </p>
+            </div>
+
+            <div class="books-grid">
+                <div class="book-card">
+                    <div class="book-image" style="background-image: url('kisni-zmaj-1-hr-de.jpg');"></div>
+                    <div class="book-content">
+                        <div class="book-title">Der Regendrache | Kišni zmaj</div>
+                        <div class="format-links">
+                            <span class="format-badge">📱 Kindle</span>
+                            <span class="format-badge">📖 Paperback</span>
+                        </div>
+                        <a href="https://www.amazon.com/Regendrache-Ki%C5%A1ni-zmaj-Bilinguales-Kroatisch-ebook/dp/B09THVR5FL" target="_blank" class="amazon-button">
+                            <span class="lang-hr">Kupi na Amazon</span>
+                            <span class="lang-de">Auf Amazon kaufen</span>
+                            <span class="lang-en">Buy on Amazon</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-image" style="background-image: url('kisni-zmaj-2-hr-de.jpg');"></div>
+                    <div class="book-content">
+                        <div class="book-title">Der Regendrache 2 / Feuriger Busch / | Kišni zmaj 2 / Vatreni grm /</div>
+                        <div class="format-links">
+                            <span class="format-badge">📱 Kindle</span>
+                            <span class="format-badge">📖 Paperback</span>
+                        </div>
+                        <a href="https://www.amazon.com/Regendrache-Feuriger-Vatreni-Bilinguales-Kroatisch-ebook/dp/B0CH7JM8DB" target="_blank" class="amazon-button">
+                            <span class="lang-hr">Kupi na Amazon</span>
+                            <span class="lang-de">Auf Amazon kaufen</span>
+                            <span class="lang-en">Buy on Amazon</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-image" style="background-image: url('kisni-zmaj-3-hr-de.jpg');"></div>
+                    <div class="book-content">
+                        <div class="book-title">Der Regendrache 3 / Eine Riesenfalle / | Kišni zmaj 3 / Divovska zamka /</div>
+                        <div class="format-links">
+                            <span class="format-badge">📱 Kindle</span>
+                            <span class="format-badge">📖 Paperback</span>
+                        </div>
+                        <a href="https://www.amazon.com/Regendrache-Riesenfalle-Divovska-Bilinguales-Kroatisch-ebook/dp/B0CHGDGVN3" target="_blank" class="amazon-button">
+                            <span class="lang-hr">Kupi na Amazon</span>
+                            <span class="lang-de">Auf Amazon kaufen</span>
+                            <span class="lang-en">Buy on Amazon</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-image" style="background-image: url('nikola-tesla-hr-de.jpg');"></div>
+                    <div class="book-content">
+                        <div class="book-title">Die Kindheit von Nikola Tesla | Djetinjstvo Nikole Tesle</div>
+                        <div class="format-links">
+                            <span class="format-badge">📱 Kindle</span>
+                            <span class="format-badge">📖 Paperback</span>
+                        </div>
+                        <a href="https://www.amazon.com/Kindheit-Nikola-Djetinjstvo-Bilinguales-Kroatisch-ebook/dp/B0CLGDTMX2" target="_blank" class="amazon-button">
+                            <span class="lang-hr">Kupi na Amazon</span>
+                            <span class="lang-de">Auf Amazon kaufen</span>
+                            <span class="lang-en">Buy on Amazon</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-image" style="background-image: url('kisni-zmaj-hr.jpg');"></div>
+                    <div class="book-content">
+                        <div class="book-title">Kišni zmaj (samo na hrvatskom)</div>
+                        <div class="format-links">
+                            <span class="format-badge">📱 Kindle</span>
+                            <span class="format-badge">📖 Paperback</span>
+                        </div>
+                        <a href="https://www.amazon.com/Kisni-zmaj-Jasmin-Secic-ebook/dp/B06XR6TX9P" target="_blank" class="amazon-button">
+                            <span class="lang-hr">Kupi na Amazon</span>
+                            <span class="lang-de">Auf Amazon kaufen</span>
+                            <span class="lang-en">Buy on Amazon</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CROATIAN/ENGLISH BOOKS -->
+        <div class="category">
+            <div class="category-header">
+                <h3>
+                    <span class="lang-hr">Dvojezične Knjige: Hrvatski / Engleski</span>
+                    <span class="lang-de">Zweisprachige Bücher: Kroatisch / Englisch</span>
+                    <span class="lang-en">Bilingual Books: Croatian / English</span>
+                </h3>
+                <p>
+                    <span class="lang-hr">Idealne za djecu u Kanadi, Australiji i drugim englesko-govornim zemljama</span>
+                    <span class="lang-de">Ideal für Kinder in Kanada, Australien und anderen englischsprachigen Ländern</span>
+                    <span class="lang-en">Ideal for children in Canada, Australia and other English-speaking countries</span>
+                </p>
+            </div>
+
+            <div class="books-grid">
+                <div class="book-card">
+                    <div class="book-image" style="background-image: url('kisni_zmaj-1-hr-en.jpg');"></div>
+                    <div class="book-content">
+                        <div class="book-title">Kišni zmaj - Rainy Dragon</div>
+                        <div class="format-links">
+                            <span class="format-badge">📱 Kindle</span>
+                            <span class="format-badge">📖 Paperback</span>
+                        </div>
+                        <a href="https://www.amazon.com/Ki%C5%A1ni-zmaj-Croatian-English-Bilingual-ebook/dp/B09QJGP796" target="_blank" class="amazon-button">
+                            <span class="lang-hr">Kupi na Amazon</span>
+                            <span class="lang-de">Auf Amazon kaufen</span>
+                            <span class="lang-en">Buy on Amazon</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-image" style="background-image: url('kisni_zmaj-2-hr-en.jpg');"></div>
+                    <div class="book-content">
+                        <div class="book-title">Kišni zmaj 2 / Vatreni grm / - Rainy Dragon 2 / Fiery Bush /</div>
+                        <div class="format-links">
+                            <span class="format-badge">📱 Kindle</span>
+                            <span class="format-badge">📖 Paperback</span>
+                        </div>
+                        <a href="https://www.amazon.com/Ki%C5%A1ni-zmaj-Vatreni-grm-Bilingual-ebook/dp/B09RVL758Q" target="_blank" class="amazon-button">
+                            <span class="lang-hr">Kupi na Amazon</span>
+                            <span class="lang-de">Auf Amazon kaufen</span>
+                            <span class="lang-en">Buy on Amazon</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-image" style="background-image: url('kisni_zmaj-3-hr-en.jpg');"></div>
+                    <div class="book-content">
+                        <div class="book-title">Kišni zmaj 3 / Divovska zamka / - Rainy Dragon 3 / A Giant Trap /</div>
+                        <div class="format-links">
+                            <span class="format-badge">📱 Kindle</span>
+                            <span class="format-badge">📖 Paperback</span>
+                        </div>
+                        <a href="https://www.amazon.com/Ki%C5%A1ni-zmaj-Divovska-zamka-Bilingual-ebook/dp/B09SP82G14" target="_blank" class="amazon-button">
+                            <span class="lang-hr">Kupi na Amazon</span>
+                            <span class="lang-de">Auf Amazon kaufen</span>
+                            <span class="lang-en">Buy on Amazon</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-image" style="background-image: url('kisni-zmaj-trilogija-_hr-en.jpg');"></div>
+                    <div class="book-content">
+                        <div class="book-title">Kišni zmaj Trilogija - Rainy Dragon Trilogy</div>
+                        <div class="format-links">
+                            <span class="format-badge">📱 Kindle</span>
+                            <span class="format-badge">📖 Paperback</span>
+                        </div>
+                        <a href="https://www.amazon.com/Ki%C5%A1ni-zmaj-Trilogija-Croatian-Bilingual-ebook/dp/B09TGF58X1" target="_blank" class="amazon-button">
+                            <span class="lang-hr">Kupi na Amazon</span>
+                            <span class="lang-de">Auf Amazon kaufen</span>
+                            <span class="lang-en">Buy on Amazon</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-image" style="background-image: url('nikola-tesla-hr-en.jpg');"></div>
+                    <div class="book-content">
+                        <div class="book-title">Nikola Tesla's Childhood | Djetinjstvo Nikole Tesle</div>
+                        <div class="format-links">
+                            <span class="format-badge">📱 Kindle</span>
+                            <span class="format-badge">📖 Paperback</span>
+                        </div>
+                        <a href="https://www.amazon.com/Childhood-Inventive-Djetinjstvo-Domi%C5%A1ljate-Bilingual-ebook/dp/B0CJT92RR9" target="_blank" class="amazon-button">
+                            <span class="lang-hr">Kupi na Amazon</span>
+                            <span class="lang-de">Auf Amazon kaufen</span>
+                            <span class="lang-en">Buy on Amazon</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ENGLISH BOOKS -->
+        <div class="category">
+            <div class="category-header">
+                <h3>
+                    <span class="lang-hr">Knjige na Engleskom</span>
+                    <span class="lang-de">Englische Bücher</span>
+                    <span class="lang-en">English Books</span>
+                </h3>
+            </div>
+
+            <div class="books-grid">
+                <div class="book-card">
+                    <div class="book-image" style="background-image: url('Rain-Dragon-1-en.jpg');"></div>
+                    <div class="book-content">
+                        <div class="book-title">Rainy Dragon</div>
+                        <div class="format-links">
+                            <span class="format-badge">📱 Kindle</span>
+                            <span class="format-badge">📖 Paperback</span>
+                        </div>
+                        <a href="https://www.amazon.com/gp/product/B01N9JROFK" target="_blank" class="amazon-button">
+                            <span class="lang-hr">Kupi na Amazon</span>
+                            <span class="lang-de">Auf Amazon kaufen</span>
+                            <span class="lang-en">Buy on Amazon</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-image" style="background-image: url('Rainy-Dragon-2.jpg');"></div>
+                    <div class="book-content">
+                        <div class="book-title">Rainy Dragon 2: Fiery Bush</div>
+                        <div class="format-links">
+                            <span class="format-badge">📱 Kindle</span>
+                            <span class="format-badge">📖 Paperback</span>
+                        </div>
+                        <a href="https://www.amazon.com/Rainy-Dragon-2-Fiery-Bush-ebook/dp/B08P5DLDPK" target="_blank" class="amazon-button">
+                            <span class="lang-hr">Kupi na Amazon</span>
+                            <span class="lang-de">Auf Amazon kaufen</span>
+                            <span class="lang-en">Buy on Amazon</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-image" style="background-image: url('Rainy-Dragon-3.jpg');"></div>
+                    <div class="book-content">
+                        <div class="book-title">Rainy Dragon 3: A Giant Trap</div>
+                        <div class="format-links">
+                            <span class="format-badge">📱 Kindle</span>
+                            <span class="format-badge">📖 Paperback</span>
+                        </div>
+                        <a href="https://www.amazon.com/Rainy-Dragon-3-Giant-Trap-ebook/dp/B091NHNJTH" target="_blank" class="amazon-button">
+                            <span class="lang-hr">Kupi na Amazon</span>
+                            <span class="lang-de">Auf Amazon kaufen</span>
+                            <span class="lang-en">Buy on Amazon</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-image" style="background-image: url('raIny-dragon-trilogija-en.jpg');"></div>
+                    <div class="book-content">
+                        <div class="book-title">Rainy Dragon Trilogy</div>
+                        <div class="format-links">
+                            <span class="format-badge">📱 Kindle</span>
+                            <span class="format-badge">📖 Paperback</span>
+                        </div>
+                        <a href="https://www.amazon.com/Rainy-Dragon-Trilogy-Fiery-Giant-ebook/dp/B09QJBD4H6" target="_blank" class="amazon-button">
+                            <span class="lang-hr">Kupi na Amazon</span>
+                            <span class="lang-de">Auf Amazon kaufen</span>
+                            <span class="lang-en">Buy on Amazon</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-image" style="background-image: url('nikola-tesla-hr-en.jpg');"></div>
+                    <div class="book-content">
+                        <div class="book-title">Nikola Tesla's Childhood - Inventive Tales</div>
+                        <div class="format-links">
+                            <span class="format-badge">📱 Kindle</span>
+                            <span class="format-badge">📖 Paperback</span>
+                        </div>
+                        <a href="https://www.amazon.com/Nikola-Teslas-Childhood-Inventive-Tales-ebook/dp/B0CJVM6BFF" target="_blank" class="amazon-button">
+                            <span class="lang-hr">Kupi na Amazon</span>
+                            <span class="lang-de">Auf Amazon kaufen</span>
+                            <span class="lang-en">Buy on Amazon</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-image" style="background-image: url('Lunavela-the-Owl.jpg');"></div>
+                    <div class="book-content">
+                        <div class="book-title">Lunavela the Owl: Daytime Adventures</div>
+                        <div class="format-links">
+                            <span class="format-badge">📱 Kindle</span>
+                            <span class="format-badge">📖 Paperback</span>
+                        </div>
+                        <a href="https://www.amazon.com/Lunavela-Owl-Adventures-Jasmin-Secic-ebook/dp/B0DMHF9RKQ" target="_blank" class="amazon-button">
+                            <span class="lang-hr">Kupi na Amazon</span>
+                            <span class="lang-de">Auf Amazon kaufen</span>
+                            <span class="lang-en">Buy on Amazon</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GERMAN BOOKS -->
+        <div class="category">
+            <div class="category-header">
+                <h3>
+                    <span class="lang-hr">Knjige na Njemačkom</span>
+                    <span class="lang-de">Deutsche Bücher</span>
+                    <span class="lang-en">German Books</span>
+                </h3>
+            </div>
+
+            <div class="books-grid">
+                <div class="book-card">
+                    <div class="book-image" style="background-image: url('nikola-tesla-de.jpg');"></div>
+                    <div class="book-content">
+                        <div class="book-title">Die Kindheit von Nikola Tesla: Erfinderische Geschichten</div>
+                        <div class="format-links">
+                            <span class="format-badge">📱 Kindle</span>
+                            <span class="format-badge">📖 Paperback</span>
+                        </div>
+                        <a href="https://www.amazon.com/Die-Kindheit-Nikola-Tesla-Erfinderische-ebook/dp/B0CLGL2ZWZ" target="_blank" class="amazon-button">
+                            <span class="lang-hr">Kupi na Amazon</span>
+                            <span class="lang-de">Auf Amazon kaufen</span>
+                            <span class="lang-en">Buy on Amazon</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-image" style="background-image: url('Lunavela-die-Eule.jpg');"></div>
+                    <div class="book-content">
+                        <div class="book-title">Lunavela, die Eule: Tagesabenteuer</div>
+                        <div class="format-links">
+                            <span class="format-badge">📱 Kindle</span>
+                            <span class="format-badge">📖 Paperback</span>
+                        </div>
+                        <a href="https://www.amazon.com/Lunavela-die-Eule-Tagesabenteuer-German-ebook/dp/B0DN8DNV14" target="_blank" class="amazon-button">
+                            <span class="lang-hr">Kupi na Amazon</span>
+                            <span class="lang-de">Auf Amazon kaufen</span>
+                            <span class="lang-en">Buy on Amazon</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-image" style="background-image: url('regendrache-de.jpg');"></div>
+                    <div class="book-content">
+                        <div class="book-title">Der Regendrache</div>
+                        <div class="format-links">
+                            <span class="format-badge">📱 Kindle</span>
+                            <span class="format-badge">📖 Paperback</span>
+                        </div>
+                        <a href="https://www.amazon.com/Regendrache-German-Jasmin-Secic-ebook/dp/B01N2XUY1T" target="_blank" class="amazon-button">
+                            <span class="lang-hr">Kupi na Amazon</span>
+                            <span class="lang-de">Auf Amazon kaufen</span>
+                            <span class="lang-en">Buy on Amazon</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>
+            <span class="lang-hr">© 2025 Jasmin Secic. Sva prava pridržana.</span>
+            <span class="lang-de">© 2025 Jasmin Secic. Alle Rechte vorbehalten.</span>
+            <span class="lang-en">© 2025 Jasmin Secic. All rights reserved.</span>
+        </p>
+        <p>
+            <span class="lang-hr">Napravljeno s ❤️ za djecu širom svijeta</span>
+            <span class="lang-de">Mit ❤️ für Kinder auf der ganzen Welt gemacht</span>
+            <span class="lang-en">Made with ❤️ for children around the world</span>
+        </p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const lang = this.getAttribute('data-lang');
+                document.body.classList.remove('show-hr', 'show-de', 'show-en');
+                document.body.classList.add('show-' + lang);
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                localStorage.setItem('preferredLanguage', lang);
+            });
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferredLanguage') || 'hr';
+            const btn = document.querySelector(`.lang-btn[data-lang="${savedLang}"]`);
+            if (btn) btn.click();
+        });
+    </script>
+</body>
+</html>
